@@ -1,11 +1,18 @@
-def get_book_text(x):
-	with open(x) as f:
-		book_text = f.read()
-		return(book_text)
 def main():
-	file_path = "./books/frankenstein.txt"
-	book_text = get_book_text(file_path)
-	words = book_text.split()
-	word_count = len(words)
-	print (f"{word_count} words found in the document")
+	import sys
+	from stats import get_word_count
+	from stats import sorted_count
+	if len(sys.argv) != 2:
+		print ("Usage: python3 main.py <path_to_book>")
+		sys.exit(1)
+	else:
+		print ("============ BOOKBOT ============")
+		print ("Analyzing book found at books/frankenstein.txt...")
+		print ("----------- Word Count ----------")
+		get_word_count()
+		print ("--------- Character Count -------")
+		sorted_chars = sorted_count()
+		for dics in sorted_chars:
+			print (f"{dics["char"]}: {dics["num"]}")
+		print ("============= END ===============")
 main()
